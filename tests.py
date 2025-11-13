@@ -68,21 +68,20 @@ class TestBooksCollector:
         [
             ("Фантастика", ["Фантастика1", "Фантастика2"]),
             ("Ужасы", ["Ужасы1"]),
+            ("Комедии", ["Комедия1"]),
             ("Детективы", []),
             ("Мультфильмы", []),
-            ("Комедии", []),
-            ("Неизвестный", []),  # несуществующий жанр
+            ("Неизвестный", []),
         ]
     )
     def test_get_books_with_specific_genre(self, genre, expected_books):
         """Параметризованный тест получения книг по разным жанрам."""
-        # Добавляем тестовые данные
         books_data = [
             ("Фантастика1", "Фантастика"),
             ("Фантастика2", "Фантастика"), 
             ("Ужасы1", "Ужасы"),
             ("Комедия1", "Комедии"),
-        ]
+    ]
         
         for book_name, book_genre in books_data:
             self.collector.add_new_book(book_name)
@@ -106,9 +105,6 @@ class TestBooksCollector:
     # Тестируем get_books_for_children
     def test_get_books_for_children(self):
         """Книги без возрастного рейтинга (не в genre_age_rating)."""
-        # genre_age_rating = ['Ужасы', 'Детективы']
-        # Без рейтинга: ['Фантастика', 'Мультфильмы', 'Комедии']
-        
         self.collector.add_new_book("Мультик")
         self.collector.set_book_genre("Мультик", "Мультфильмы")
         self.collector.add_new_book("Комедия")
